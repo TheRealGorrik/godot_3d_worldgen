@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://btso7e71y2j47"]
+
+[ext_resource type="Script" path="res://World.gd" id="1_pv783"]
+[ext_resource type="PackedScene" uid="uid://ty5w8fvu05bt" path="res://Player.tscn" id="2_glljo"]
+[ext_resource type="Texture2D" uid="uid://x7v6lnosyyce" path="res://rural_asphalt_road_8k.hdr" id="3_ybjgn"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_04bub"]
+panorama = ExtResource("3_ybjgn")
+
+[sub_resource type="Sky" id="Sky_4ab4v"]
+sky_material = SubResource("PanoramaSkyMaterial_04bub")
+
+[sub_resource type="Environment" id="Environment_t2bv3"]
+background_mode = 2
+sky = SubResource("Sky_4ab4v")
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_pv783")
+freqency = 0.005
+
+[node name="Player" parent="." instance=ExtResource("2_glljo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_t2bv3")
